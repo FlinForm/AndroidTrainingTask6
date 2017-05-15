@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="CustomView">
+        <attr name="eyesColor" format="color"/>
+        <attr name="mouthColor" format="color"/>
+        <attr name="isSad" format="boolean"/>
+    </declare-styleable>
+</resources>
