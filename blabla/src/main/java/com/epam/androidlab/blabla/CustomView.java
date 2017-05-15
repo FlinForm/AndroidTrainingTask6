@@ -14,13 +14,13 @@ public class CustomView extends View {
 
     public CustomView(Context context, AttributeSet attributeSetrs) {
         super(context, attributeSetrs);
+        painter = new Paint();
+        path = new Path();
     }
 
     //Drawing sad smile
     @Override
     protected void onDraw(Canvas canvas) {
-        painter = new Paint();
-        path = new Path();
         canvas.drawARGB(80, 102, 204, 255);
 
         //Drawing circle
@@ -48,5 +48,10 @@ public class CustomView extends View {
         path.quadTo(360, 530, 450, 600);
         painter.setStyle(Paint.Style.STROKE);
         canvas.drawPath(path, painter);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 }
