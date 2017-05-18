@@ -3,5 +3,5 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="first_fragment_title">Custom View</string>
-    <string name="second_fragment_title">Second Fragment</string>
+    <string name="second_fragment_title">Recycle View</string>
 </resources>
