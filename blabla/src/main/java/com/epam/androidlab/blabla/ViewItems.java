@@ -22,5 +22,4 @@ public class ViewItems {
     public int getAlbumCover() {
         return albumCover;
     }
-
 }
