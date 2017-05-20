@@ -17,7 +17,6 @@ public class CustomView extends View implements View.OnClickListener {
     private final Paint painter;
     private final Path path;
     private boolean isSmileSad;
-    private final String MY_TAGS = "myLogs";
 
     public CustomView(Context context, AttributeSet attributeSetrs) {
         super(context, attributeSetrs);
@@ -112,7 +111,6 @@ public class CustomView extends View implements View.OnClickListener {
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Log.i(MY_TAGS, "inside parcelable");
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
         bundle.putBoolean("isSmileSad", isSmileSad);
@@ -121,7 +119,6 @@ public class CustomView extends View implements View.OnClickListener {
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        Log.i(MY_TAGS, "inside restore");
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             isSmileSad = bundle.getBoolean("isSmileSad");

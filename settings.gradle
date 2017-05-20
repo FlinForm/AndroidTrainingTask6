@@ -1,1 +1,1 @@
-include ':blabla'
+include ':blabla', ':task7'

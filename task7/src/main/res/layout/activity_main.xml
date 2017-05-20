@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/layout_with_smile"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="false" />
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
 </FrameLayout>
+
