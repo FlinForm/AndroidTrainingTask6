@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <com.epam.androidlab.blabla.CustomView
-        app:eyesColor="@color/orangeColor"
-        app:isSad="false"
+        android:id="@+id/customView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp" />
-</RelativeLayout>
+        android:layout_marginTop="70dp"
+        app:eyesColor="@color/orangeColor"
+        app:isSad="false" />
+</FrameLayout>

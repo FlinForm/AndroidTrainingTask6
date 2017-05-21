@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private final String IMAGE_URL = "http://www.howtablet.ru/wp-content/uploads/2016/04/%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-Android-6.0.1-Marshmallow.jpg";
     private DrawerLayout drawer;
     private View headerLayout;
     private ImageView headerImageView;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
     // Downloads image from internet
     private void downloadImage() {
-        String IMAGE_URL = "http://www.howtablet.ru/wp-content/uploads/2016/04/%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-Android-6.0.1-Marshmallow.jpg";
         Picasso.with(headerLayout.getContext())
                 .load(IMAGE_URL)
                 .into(headerImageView);
@@ -67,9 +67,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.second_fragment:
                 fragmentTransaction.replace(R.id.frame_layout, new SecondFragment());
-                break;
-            default:
-                fragmentTransaction.add(R.id.frame_layout, new FirstFragment());
                 break;
         }
         fragmentTransaction.commit();

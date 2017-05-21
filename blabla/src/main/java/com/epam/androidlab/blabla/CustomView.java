@@ -12,16 +12,20 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class CustomView extends View implements View.OnClickListener {
-    private final int[] smileColors = {Color.YELLOW, Color.BLACK, Color.RED, Color.BLUE};
-    private final Paint painter;
+    private final Paint smilePainter;
+    private final Paint mouthPainter;
+    private final Paint eyesPainter;
+    private final Paint nosePainter;
     private final Path path;
     private boolean isSmileSad;
 
     public CustomView(Context context, AttributeSet attributeSetrs) {
         super(context, attributeSetrs);
-        CustomView instance = this;
-        instance.setOnClickListener(this);
-        painter = new Paint();
+        setOnClickListener(this);
+        smilePainter = new Paint();
+        mouthPainter = new Paint();
+        eyesPainter = new Paint();
+        nosePainter = new Paint();
         path = new Path();
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(
@@ -30,8 +34,8 @@ public class CustomView extends View implements View.OnClickListener {
                 0, 0);
         try {
             isSmileSad = typedArray.getBoolean(R.styleable.CustomView_isSad, false);
-            smileColors[3] = typedArray.getInteger(R.styleable.CustomView_mouthColor, 0);
-            smileColors[1] = typedArray.getInteger(R.styleable.CustomView_eyesColor, 0);
+            mouthPainter.setColor(typedArray.getColor(R.styleable.CustomView_mouthColor, Color.BLUE));
+            eyesPainter.setColor(typedArray.getInteger(R.styleable.CustomView_eyesColor, Color.BLACK));
         } finally {
             typedArray.recycle();
         }
@@ -40,23 +44,22 @@ public class CustomView extends View implements View.OnClickListener {
     //Drawing sad smile
     @Override
     protected void onDraw(Canvas canvas) {
-        checkAttributes();
 
         //Drawing smile circle
-        painter.setColor(smileColors[0]);
-        canvas.drawCircle(360, 470, 200, painter);
+        smilePainter.setColor(Color.YELLOW);
+        smilePainter.setStrokeWidth(10);
+        canvas.drawCircle(360, 470, 200, smilePainter);
 
         //Drawing eyes
-        painter.setColor(smileColors[1]);
-        painter.setStrokeWidth(10);
-        canvas.drawLine(250, 380, 290, 420, painter);
-        canvas.drawLine(250, 420, 290, 380, painter);
-        canvas.drawLine(470, 380, 430, 420, painter);
-        canvas.drawLine(470, 420, 430, 380, painter);
+        eyesPainter.setStrokeWidth(10);
+        canvas.drawLine(250, 380, 290, 420, eyesPainter);
+        canvas.drawLine(250, 420, 290, 380, eyesPainter);
+        canvas.drawLine(470, 380, 430, 420, eyesPainter);
+        canvas.drawLine(470, 420, 430, 380, eyesPainter);
 
         //Drawing nose
-        painter.setColor(smileColors[2]);
-        canvas.drawCircle(360, 480, 30, painter);
+        nosePainter.setColor(Color.RED);
+        canvas.drawCircle(360, 480, 30, nosePainter);
 
         //Drawing smile mouth
         if (isSmileSad) {
@@ -66,40 +69,24 @@ public class CustomView extends View implements View.OnClickListener {
         }
     }
 
-    // Checks, if attributes in *.xml file are given. If not, restores default values.
-    private void checkAttributes() {
-        if (smileColors[0] == 0) {
-            smileColors[0] = Color.YELLOW;
-        }
-        if (smileColors[1] == 0) {
-            smileColors[1] = Color.BLACK;
-        }
-        if (smileColors[2] == 0) {
-            smileColors[2] = Color.RED;
-        }
-        if (smileColors[3] == 0) {
-            smileColors[3] = Color.BLUE;
-        }
-    }
-
     //Drawing cheerful mouth
     private void drawCheerfulMouth(Canvas canvas) {
-        painter.setColor(smileColors[3]);
         path.reset();
         path.moveTo(270, 600);
         path.quadTo(360, 670, 450, 600);
-        painter.setStyle(Paint.Style.STROKE);
-        canvas.drawPath(path, painter);
+        mouthPainter.setStyle(Paint.Style.STROKE);
+        mouthPainter.setStrokeWidth(10);
+        canvas.drawPath(path, mouthPainter);
     }
 
     //Drawing sad mouth
     private void drawSadMouth(Canvas canvas) {
-        painter.setColor(smileColors[3]);
         path.reset();
         path.moveTo(270, 600);
         path.quadTo(360, 530, 450, 600);
-        painter.setStyle(Paint.Style.STROKE);
-        canvas.drawPath(path, painter);
+        mouthPainter.setStyle(Paint.Style.STROKE);
+        mouthPainter.setStrokeWidth(10);
+        canvas.drawPath(path, mouthPainter);
     }
 
     @Override
